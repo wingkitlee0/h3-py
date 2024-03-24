@@ -1,7 +1,17 @@
 find_package(Cython MODULE REQUIRED)
 find_package(PythonExtensions MODULE REQUIRED)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+execute_process(
+  COMMAND "${PYTHON_EXECUTABLE}"
+  -c "import numpy; print(numpy.get_include())"
+  OUTPUT_VARIABLE NumPy_INCLUDE_DIRS
+  OUTPUT_STRIP_TRAILING_WHITESPACE
+)
+
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${NumPy_INCLUDE_DIRS}
+)
 
 # Build Cython annotations
 set(CYTHON_ANNOTATE TRUE)
@@ -24,6 +34,7 @@ add_cython_file(edges)
 add_cython_file(to_multipoly)
 add_cython_file(error_system)
 add_cython_file(memory)
+add_cython_file(vectorized)
 
 
 # Include pyx and pxd files in distribution for use by Cython API
@@ -41,6 +52,7 @@ install(
         error_system.pyx
         memory.pxd
         memory.pyx
+        vectorized.pyx
     DESTINATION
         src/h3/_cy
 )

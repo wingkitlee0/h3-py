@@ -98,3 +98,5 @@ from .error_system import (
     H3MemoryBoundsError,
     H3OptionInvalidError,
 )
+
+from .vectorized import latlngs_to_cells

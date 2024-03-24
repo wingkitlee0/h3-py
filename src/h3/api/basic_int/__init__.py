@@ -188,6 +188,19 @@ def cell_to_latlng(h):
     return _cy.cell_to_latlng(_in_scalar(h))
 
 
+def latlngs_to_cells(lats, lngs, res):
+    """
+    Return a collection of H3 cells using the two arrays
+    of lat and lng points for a given resolution.
+
+    Returns
+    -------
+    list of H3Cell
+
+    """
+    return _out_collection(_cy.latlngs_to_cells(lats, lngs, res))
+
+
 def get_resolution(h):
     """
     Return the resolution of an H3 cell.
