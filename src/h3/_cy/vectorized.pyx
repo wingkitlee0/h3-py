@@ -9,19 +9,26 @@ from .error_system cimport check_for_error
 
 import numpy as np
 cimport numpy as np
+import cython
+cimport cython
 
 
-cpdef np.ndarray[np.uint64_t, ndim=1] latlngs_to_cells(np.ndarray[np.double_t, ndim=1] lats, np.ndarray[np.double_t, ndim=1] lngs, int res):
+@cython.boundscheck(False)
+@cython.wraparound(False)
+cpdef H3int[:] latlngs_to_cells(
+    const double[:] lat,
+    const double[:] lng,
+    int res,
+) noexcept:
     cdef:
         h3lib.LatLng c
-        np.ndarray[H3int, ndim=1] out
         H3int temp
+        H3int[:] out = np.empty(len(lat), dtype=np.uint64)  # Declare and initialize 'out'
 
-    out = np.full(lats.shape[0], 0, dtype=np.uint64)
+    with nogil:
+        for i in range(len(lat)):
+            c = deg2coord(lat[i], lng[i])
+            h3lib.latLngToCell(&c, res, &temp)
+            out[i] = temp
 
-    for i, (lat, lng) in enumerate(zip(lats, lngs)):
-        c = deg2coord(lat, lng)
-        check_for_error(h3lib.latLngToCell(&c, res, &temp))
-        out[i] = temp
-
-    return out
+        return out

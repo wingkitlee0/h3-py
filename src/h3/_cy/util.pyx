@@ -9,7 +9,7 @@ from .error_system import (
     H3CellInvalidError,
 )
 
-cdef h3lib.LatLng deg2coord(double lat, double lng) nogil:
+cdef h3lib.LatLng deg2coord(double lat, double lng) noexcept nogil:
     cdef:
         h3lib.LatLng c
 
@@ -19,7 +19,7 @@ cdef h3lib.LatLng deg2coord(double lat, double lng) nogil:
     return c
 
 
-cdef (double, double) coord2deg(h3lib.LatLng c) nogil:
+cdef (double, double) coord2deg(h3lib.LatLng c) noexcept nogil:
     return (
         h3lib.radsToDegs(c.lat),
         h3lib.radsToDegs(c.lng)

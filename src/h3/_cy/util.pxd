@@ -1,6 +1,6 @@
 from .h3lib cimport H3int, H3str, LatLng
 
-cdef LatLng deg2coord(double lat, double lng) nogil
+cdef LatLng deg2coord(double lat, double lng) noexcept nogil
 cdef (double, double) coord2deg(LatLng c) nogil
 
 cpdef H3int str_to_int(H3str h) except? 0
