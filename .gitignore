@@ -3,6 +3,9 @@ h3c/
 .cache/
 h3/out/
 
+# This file is copied from h3lib
+src/h3/_cy/h3api.h
+
 # Generated C code from Cython test
 tests/**/*.c
 # Cython HTML annotations
