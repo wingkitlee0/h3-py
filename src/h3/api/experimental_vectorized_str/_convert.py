@@ -14,4 +14,6 @@ def _in_collection(x):
 
 def _out_collection(x):
     import numpy as np
-    return np.asarray([f"{cell:x}" for cell in x], dtype=object)
+
+    # return np.asarray([f"{cell:x}" for cell in x], dtype=np.dtype('U15'))
+    return [cell.to_bytes(8).hex()[1:] for cell in x]
