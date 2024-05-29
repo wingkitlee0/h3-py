@@ -19,7 +19,7 @@ on:
 
 jobs:
   make_sdist:
-    if: ${{ github.event_name != 'pull_request' || !github.event.pull_request.draft }}
+    # if: ${{ github.event_name != 'pull_request' || !github.event.pull_request.draft }}
     runs-on: ubuntu-22.04
 
     steps:
@@ -36,6 +36,7 @@ jobs:
         run: |
           python --version
           pipx --version
+          pipx run build --version
           pipx run build --sdist
 
       - name: Install from sdist
