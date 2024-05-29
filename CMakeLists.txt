@@ -38,3 +38,25 @@ install(
         "${CMAKE_CURRENT_BINARY_DIR}/src/h3lib/src/h3lib/include/h3api.h"
     DESTINATION
         src/h3/_cy)
+
+# Include files from h3-py and h3 C libraries
+include(GNUInstallDirs)
+install(
+    FILES
+        "CHANGELOG.md"
+        "CMakeLists.txt"
+        "LICENSE"
+        "readme.md"
+        "requirements.in"
+    DESTINATION
+        "${CMAKE_INSTALL_DATADIR}/h3"
+)
+install(
+    FILES
+        "src/h3lib/LICENSE"
+        "src/h3lib/README.md"
+        "src/h3lib/VERSION"
+        "src/h3lib/CMakeLists.txt"
+    DESTINATION
+        "${CMAKE_INSTALL_DATADIR}/h3lib"
+)
