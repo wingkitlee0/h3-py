@@ -36,7 +36,6 @@ jobs:
         run: |
           python --version
           pipx --version
-          pipx run build --version
           pipx run build --sdist
 
       - name: Install from sdist
