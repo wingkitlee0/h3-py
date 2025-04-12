@@ -24,6 +24,7 @@ and should be generally aligned with the
    is_pentagon
    is_res_class_III
    is_valid_directed_edge
+   is_valid_vertex
 ```
 
 ## Index representation
@@ -78,6 +79,9 @@ Functions relating H3 objects to geographic (lat/lng) coordinates.
    cell_to_parent
    cell_to_children
    cell_to_center_child
+   cell_to_children_size
+   cell_to_child_pos
+   child_pos_to_cell
    compact_cells
    uncompact_cells
 ```
@@ -102,10 +106,21 @@ Functions relating H3 objects to geographic (lat/lng) coordinates.
 
 .. autosummary::
    cells_to_directed_edge
-   get_directed_edge_destination
    directed_edge_to_cells
-   origin_to_directed_edges
    get_directed_edge_origin
+   get_directed_edge_destination
+   origin_to_directed_edges
+```
+
+## Vertexes
+
+```{eval-rst}
+.. currentmodule:: h3
+
+.. autosummary::
+   cell_to_vertex
+   cell_to_vertexes
+   vertex_to_latlng
 ```
 
 ## Polygon interface
@@ -144,6 +159,17 @@ Note that this is reversed from [``__geo_interface__``](https://gist.github.com/
    cells_to_h3shape
    geo_to_cells
    cells_to_geo
+```
+
+#### Additional functions
+
+```{eval-rst}
+.. currentmodule:: h3
+
+.. autosummary::
+   polygon_to_cells
+   polygon_to_cells_experimental
+   h3shape_to_cells_experimental
 ```
 
 
